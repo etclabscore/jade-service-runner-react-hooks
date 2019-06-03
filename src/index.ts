@@ -1,6 +1,7 @@
-export function helloWorld() {
-  // hello world
-  return "hello world";
-}
+import useInterval from "./hooks/useInterval";
+import useServiceRunner from "./hooks/useServiceRunner";
 
-export default helloWorld;
+export {
+  useInterval,
+  useServiceRunner,
+};

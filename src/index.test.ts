@@ -1,7 +1,7 @@
-import helloWorld from "./index";
+import { useServiceRunner } from "./index";
 
 describe("index", () => {
-  it("can call hello world", () => {
-    expect(helloWorld()).toEqual("hello world");
+  it("can export useServiceRunner", () => {
+    expect(!!useServiceRunner).toEqual(true);
   });
 });
