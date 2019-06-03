@@ -3,6 +3,7 @@
   "version": "0.0.0-development",
   "description": "Easy to use React Hook recipes for @etclabscore/jade-service-runner & @etclabscore/jade-service-runner-client",
   "main": "build/index.js",
+  "files": ["build"],
   "scripts": {
     "build": "tsc",
     "lint": "tslint --fix -p .",
