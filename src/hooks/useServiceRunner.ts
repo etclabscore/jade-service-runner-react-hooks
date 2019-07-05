@@ -1,34 +1,39 @@
-import { useState } from "react";
-import ServiceRunner from "@etclabscore/jade-service-runner-client";
-import useInterval from "./useInterval";
+import JadeServiceRunner from "@etclabscore/jade-service-runner-client";
+import * as React from "react";
 
-const supportedServices = [
-  {
-    name: "multi-geth",
-    version: "1.9.0",
-    envs: ["kotti", "mainnet"],
-  },
-];
-
-const serviceRunner = new ServiceRunner({
-  transport: {
-    host: "localhost",
-    port: 8002,
-    type: "http",
-  },
-});
-
-const useServiceRunner = () => {
-  const [runningServices, setRunningServices] = useState();
-  const [installedServices, setInstalledServices] = useState();
-
-  useInterval(() => {
-    serviceRunner.listRunningServices().then(setRunningServices);
-  }, 5000);
-  useInterval(() => {
-    serviceRunner.listInstalledServices().then(setInstalledServices);
-  }, 5000);
-  return [supportedServices, runningServices, installedServices, serviceRunner.installService, serviceRunner.startService]; //tslint:disable-line
-};
+function useServiceRunner(transportUrl: string): [JadeServiceRunner | undefined, any] {
+  const [url, setUrl] = React.useState(transportUrl || "http://localhost:8002");
+  const [serviceRunner, setServiceRunner] = React.useState<JadeServiceRunner | undefined>();
+  React.useEffect(() => {
+    if (!url) {
+      return;
+    }
+    let parsedUrl;
+    try {
+      parsedUrl = new URL(url);
+    } catch (e) {
+      return;
+    }
+    let rpc;
+    try {
+      const protocol = parsedUrl.protocol.split(":")[0] as any;
+      const fallbackPort = protocol === "http" ? 80 : 443;
+      const port = parseInt(parsedUrl.port, 10);
+      rpc = new JadeServiceRunner({
+        transport: {
+          host: parsedUrl.hostname,
+          port: port ? port : fallbackPort,
+          type: protocol,
+        },
+      });
+    } catch (e) {
+      return;
+    }
+    if (rpc) {
+      setServiceRunner(rpc);
+    }
+  }, [url]);
+  return [serviceRunner, setUrl];
+}
 
 export default useServiceRunner;
