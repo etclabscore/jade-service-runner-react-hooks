@@ -3,9 +3,11 @@
   "version": "0.0.0-development",
   "description": "Easy to use React Hook recipes for @etclabscore/jade-service-runner & @etclabscore/jade-service-runner-client",
   "main": "build/index.js",
-  "files": ["build"],
+  "files": [
+    "build"
+  ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && typedoc --out docs",
     "lint": "tslint --fix -p .",
     "test": "npm run lint && jest --coverage"
   },
@@ -19,6 +21,7 @@
     "jest": "^24.8.0",
     "ts-jest": "^24.0.2",
     "tslint": "^5.17.0",
+    "typedoc": "^0.14.2",
     "typescript": "^3.5.1"
   },
   "dependencies": {
