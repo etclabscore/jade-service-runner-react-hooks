@@ -1,7 +1,7 @@
-import useInterval from "./hooks/useInterval";
 import useServiceRunner from "./hooks/useServiceRunner";
+import useService from "./hooks/useService";
 
 export {
-  useInterval,
   useServiceRunner,
+  useService,
 };
