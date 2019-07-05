@@ -1,3 +1,11 @@
+## [1.0.2](https://github.com/etclabscore/jade-service-runner-react-hooks/compare/1.0.1...1.0.2) (2019-07-05)
+
+
+### Bug Fixes
+
+* add install instructions ([4c86fa5](https://github.com/etclabscore/jade-service-runner-react-hooks/commit/4c86fa5))
+* typing issues with use service runner ([b23d08c](https://github.com/etclabscore/jade-service-runner-react-hooks/commit/b23d08c))
+
 ## [1.0.1](https://github.com/etclabscore/jade-service-runner-react-hooks/compare/1.0.0...1.0.1) (2019-07-05)
 
 
