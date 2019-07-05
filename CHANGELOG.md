@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/etclabscore/jade-service-runner-react-hooks/compare/1.0.0...1.0.1) (2019-07-05)
+
+
+### Bug Fixes
+
+* add typedocs ([296a5a6](https://github.com/etclabscore/jade-service-runner-react-hooks/commit/296a5a6))
+
 # 1.0.0 (2019-07-05)
 
 
