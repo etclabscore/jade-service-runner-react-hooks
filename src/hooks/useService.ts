@@ -1,14 +1,14 @@
 import JadeServiceRunner from "@etclabscore/jade-service-runner-client";
 import * as React from "react";
 
-function useService(
+function useService<T>(
   serviceRunner: JadeServiceRunner | undefined,
   serviceName: string,
   client: any,
   version: string,
   env: string,
-): [any, React.Dispatch<any>] {
-  const [service, setService] = React.useState();
+): [T | undefined, React.Dispatch<any>] {
+  const [service, setService] = React.useState<T>();
   const [url, setUrl] = React.useState();
   React.useEffect(() => {
     if (!serviceRunner) {
@@ -34,13 +34,14 @@ function useService(
         const protocol = parsedUrl.protocol.split(":")[0] as any;
         const fallbackPort = protocol === "http" ? 80 : 443;
         const port = parseInt(parsedUrl.port, 10);
-        setService(new client({
+        const c: T = new client({
           transport: {
             host: parsedUrl.hostname,
             port: port ? port : fallbackPort,
             type: protocol,
           },
-        }));
+        })
+        setService(c);
       } catch (e) {
         return;
       }
